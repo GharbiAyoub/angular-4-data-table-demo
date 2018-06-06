@@ -1,6 +1,10 @@
 <div style="margin: auto; max-width: 1000px; margin-bottom: 50px;">
+    <div>
+        <span>Filtre By Name: </span>
+        <input type="text" [(ngModel)]="namefiltre" class="form-control input-sm" style="display: inline-block; width: 100px">
+    </div>
     <data-table id="persons-grid" headerTitle="Employees" [pagination_limit]="true" [items]="items" [itemCount]="itemCount" (reload)="reloadItems($event)"
-        (rowClick)="rowClick($event)" (rowDoubleClick)="rowDoubleClick($event)" [rowTooltip]="rowTooltip">
+        (rowClick)="rowClick($event)" (rowDoubleClick)="rowDoubleClick($event)" [rowTooltip]="rowTooltip" [rowColors]="rowColors">
         <data-table-column [property]="'name'" [header]="'Name'" [sortable]="true" [resizable]="true">
         </data-table-column>
         <data-table-column [property]="'date'" [header]="'Date'" [sortable]="true">

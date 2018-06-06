@@ -16,7 +16,7 @@ export class DataTableDemo1 {
     itemCount = 0;
 
     str = 'Description';
-
+    namefiltre = 'Search by Name';
     currentRow;
 
     presence = [];
@@ -24,9 +24,11 @@ export class DataTableDemo1 {
     constructor() {
         this.itemResource.count().then(count => this.itemCount = count);
         this.presence = persons;
+        this.rowColors = this.rowColors.bind(this);
     }
 
     reloadItems(params) {
+        //alert('Reload')
         this.itemResource.query(params).then(items => this.items = items);
     }
 
@@ -55,9 +57,16 @@ export class DataTableDemo1 {
     }
 
     save() {
+        var x=0;
         this.presence.forEach(element => {
-            console.log('Present: ' + element.Present + '   Description ' + element.Description);
+            console.log('Etudiant N'+x+'   Present: ' + element.Present + '   Description ' + element.Description);
             //========> Call create Service Presence
+            x++;
         });
+    }
+
+
+    rowColors(Etudiant) {
+        if ((Etudiant.name.indexOf(this.namefiltre) != -1) || (Etudiant.phoneNumber.indexOf(this.namefiltre) != -1 )) {return 'rgb(255, 255, 197)'; };
     }
 }
